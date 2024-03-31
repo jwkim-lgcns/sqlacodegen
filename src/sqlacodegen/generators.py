@@ -1096,12 +1096,11 @@ class DeclarativeGenerator(TablesGenerator):
 
         # Render column attributes
         rendered_column_attributes: list[str] = []
-        for nullable in (False, True):
-            for column_attr in model.columns:
-                if column_attr.column.nullable is nullable:
-                    rendered_column_attributes.append(
-                        self.render_column_attribute(column_attr)
-                    )
+
+        for column_attr in model.columns:
+            rendered_column_attributes.append(
+                self.render_column_attribute(column_attr)
+            )
 
         if rendered_column_attributes:
             sections.append("\n".join(rendered_column_attributes))
